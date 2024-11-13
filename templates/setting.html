@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Info Settings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/setting.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-text">
+                <h1>AI LIPSYNCING</h1>
+            </div>
+        </div>
+        <div class="nav-links">
+            <nav>
+                <a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a>
+                <a href="{{ url_for('setting') }}" class="nav-link">Settings</a>
+                <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+            </nav>
+            
+            <!-- <div class="user-icon">
+                <img src="{{ url_for('static', filename='img/user-icon.png') }}" alt="User">
+            </div> -->
+        </div>
+    </nav>
+
+    <div class="card">
+        <h1>Personal Info</h1>
+        <p class="subtitle">You can update your profile photo and personal details here.</p>
+        
+        <img src="{{ url_for('static', filename='img/profile.png') }}" alt="Profile Picture" class="profile-pic" id="profilePic">
+        <input type="file" id="profilePicInput" style="display: none;">
+        <button onclick="document.getElementById('profilePicInput').click()">Change Photo</button>
+        
+        <form id="personalInfoForm" method="post" action="/settings">
+            <div class="input-group">
+                <input type="text" id="firstName" placeholder="First Name" name="first_name">
+                <input type="text" id="lastName" placeholder="Last Name" name="last_name">
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email Address" name="email">
+                <select id="country" name="country">
+                    <option value="">Select Country</option>
+                    <option value="bangladesh">Pakistan</option>
+                    <option value="bangladesh">India</option>
+                    <option value="bangladesh">USA</option>
+                    <option value="bangladesh">Russian</option>
+                </select>
+            </div>
+
+            <h2>Update Password (Optional)</h2>
+            <input type="password" id="currentPassword" placeholder="Current Password" name="current_password">
+            <div class="input-group">
+                <input type="password" id="newPassword" placeholder="New Password" name="new_password">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" name="confirm_password">
+            </div>
+
+            <h2>Enable Two-Factor Authentication</h2>
+            <p class="subtitle">Add an extra layer of security by enabling two-factor authentication via email.</p>
+            <button type="button" id="enable2FA">Enable 2FA</button>
+            
+            <div id="2faSection" style="display: none;">
+                <p>A verification code has been sent to your email.</p>
+                <input type="text" id="verificationCode" placeholder="Enter verification code" name="verification_code">
+                <button type="button" id="verifyCodeBtn">Verify Code</button>
+            </div>
+            
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 AI-Lipsing Web App. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/setting.js') }}"></script>
+</body>
+</html>
