@@ -35,6 +35,11 @@
         <form method="post" action="/">
             <button type="submit" class="btn-primary" id="setup-btn">Start Lipsync Lab Setup</button> 
         </form>
+
+        {% if message %}
+        <div class="message">{{ message }}</div>
+        {% endif %}
+
     </section>
     
     <main>
